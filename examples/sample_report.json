@@ -1,0 +1,21 @@
+{
+  "run_name": "example-run",
+  "summary": {
+    "contract_drift": 0.12,
+    "validation_drift": 0.05,
+    "behavioral_drift": 0.08,
+    "progressive_drift": 0.00
+  },
+  "endpoints": [
+    {
+      "endpoint": "POST /users",
+      "is_drift": true,
+      "confidence": 0.92,
+      "violations": [
+        {"field":"email","type":"type_mismatch","expected":"string (email)","observed":null,"confidence":0.99},
+        {"field":"age","type":"missing","expected":"integer","observed":null,"confidence":0.95}
+      ],
+      "evidence": ["8/10 responses missing 'age'","All responses with email failed regex check"]
+    }
+  ]
+}

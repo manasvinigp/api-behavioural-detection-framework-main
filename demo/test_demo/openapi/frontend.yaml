@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Frontend Service (demo)
+  version: 1.0.0
+  description: Minimal OpenAPI spec for frontend endpoints in microservices-demo
+servers:
+  - url: http://localhost:8080
+paths:
+  /product/{id}:
+    get:
+      summary: Get product page
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product page (JSON representation)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+        '404':
+          description: Not found
+
+  /product-meta/{ids}:
+    get:
+      summary: Get metadata for multiple product ids
+      parameters:
+        - name: ids
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Metadata array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string

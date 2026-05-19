@@ -1,0 +1,80 @@
+{
+  "root_causes": [
+    {
+      "pattern": "missing_required_field",
+      "endpoint": "POST /users",
+      "confidence": "high",
+      "hypothesis": "Required field 'email' is missing from API response. The field is defined in the specification but never returned by the implementation.",
+      "why": "The API implementation likely forgot to include the field in the response serializer or database query projection.",
+      "evidence": [
+        "Test case test_001: email field absent",
+        "Test case test_003: email field absent",
+        "Test case test_007: email field absent"
+      ],
+      "remediation": {
+        "title": "Add missing email field to response",
+        "description": "Include the email field in the UserResponse serializer",
+        "code_example": "# Fix for missing email field\n\nclass UserResponse(BaseModel):\n    id: int\n    name: str\n    email: str  # \u2190 Add this required field\n    age: Optional[int] = None\n    status: str = \"active\"\n\n@app.post(\"/users\")\ndef create_user(user: UserInput) -> UserResponse:\n    new_user = db.create_user(user)\n    return UserResponse(\n        id=new_user.id,\n        name=new_user.name,\n        email=new_user.email,  # \u2190 Make sure to include it\n        age=new_user.age,\n        status=new_user.status\n    )",
+        "estimated_effort": "low",
+        "priority": "high",
+        "steps": [
+          "1. Open the user serializer/response model file",
+          "2. Add 'email: str' field to the response schema",
+          "3. Update the endpoint handler to include email in the response",
+          "4. Run tests to verify the fix",
+          "5. Update OpenAPI spec if needed"
+        ]
+      }
+    },
+    {
+      "pattern": "type_mismatch",
+      "endpoint": "POST /users",
+      "confidence": "high",
+      "hypothesis": "Field 'age' has type mismatch. Expected integer but got string.",
+      "why": "Type coercion issue in serializer, database schema returns string, or incorrect type casting in business logic.",
+      "evidence": [
+        "Test case test_004: age='25' (string) instead of 25 (int)",
+        "Test case test_005: age='30' (string) instead of 30 (int)"
+      ],
+      "remediation": {
+        "title": "Fix type conversion for age field",
+        "description": "Ensure age field is properly typed as integer in serializer",
+        "code_example": "# Fix for type mismatch\n\nclass UserResponse(BaseModel):\n    id: int\n    name: str\n    email: str\n    age: int  # \u2190 Ensure correct type annotation\n\n    class Config:\n        # Enable strict type validation\n        validate_assignment = True\n\n@app.post(\"/users\")\ndef create_user(user: UserInput) -> UserResponse:\n    new_user = db.create_user(user)\n    return UserResponse(\n        id=new_user.id,\n        name=new_user.name,\n        email=new_user.email,\n        age=int(new_user.age)  # \u2190 Explicit type conversion\n    )",
+        "estimated_effort": "low",
+        "priority": "high"
+      }
+    },
+    {
+      "pattern": "missing_input_validation",
+      "endpoint": "POST /users",
+      "confidence": "medium",
+      "hypothesis": "Endpoint accepts invalid input that should be rejected. Missing validation for email format and age constraints.",
+      "why": "Validation middleware not applied, or validator configuration incomplete.",
+      "evidence": [
+        "Test case test_invalid_001: Accepted invalid email 'not-an-email'",
+        "Test case test_invalid_002: Accepted negative age -5"
+      ],
+      "remediation": {
+        "title": "Add input validation",
+        "description": "Add Pydantic validators for email and age fields",
+        "code_example": "# Add validation\n\nfrom pydantic import BaseModel, Field, validator, EmailStr\n\nclass UserInput(BaseModel):\n    email: EmailStr  # \u2190 Use EmailStr for automatic validation\n    name: str = Field(..., min_length=1, max_length=100)\n    age: Optional[int] = Field(None, ge=0, le=150)  # \u2190 ge/le for constraints\n\n    @validator('age')\n    def validate_age(cls, v):\n        if v is not None and (v < 0 or v > 150):\n            raise ValueError('Age must be between 0 and 150')\n        return v\n\n    @validator('email')\n    def validate_email_domain(cls, v):\n        if '@' not in v:\n            raise ValueError('Invalid email format')\n        return v",
+        "estimated_effort": "medium",
+        "priority": "medium"
+      }
+    }
+  ],
+  "summary": {
+    "total_patterns_found": 3,
+    "high_confidence": 2,
+    "medium_confidence": 1,
+    "low_confidence": 0,
+    "systemic_issues": [
+      "Multiple serializers missing required fields - consider implementing automated schema validation tests",
+      "Input validation gaps across POST endpoints - recommend adding a validation middleware layer"
+    ],
+    "quick_wins": [
+      "Add email field to UserResponse (5 minutes, fixes 3 test failures)",
+      "Fix age type conversion (10 minutes, fixes 2 test failures)"
+    ]
+  }
+}

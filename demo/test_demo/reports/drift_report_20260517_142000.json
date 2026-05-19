@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-17T14:20:00.456169+00:00",
+    "generator_version": "0.1.0",
+    "format": "json",
+    "spec_source": "demo\\test_demo\\openapi\\shoppingassistant.yaml",
+    "spec_version": "1.0.0",
+    "api_url": "http://127.0.0.1:8080"
+  },
+  "execution_summary": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "pass_rate": 100.0
+  },
+  "drift_summary": {
+    "total_issues": 2,
+    "by_severity": {
+      "medium": 2
+    },
+    "by_type": {
+      "contract": 0,
+      "validation": 0,
+      "behavioral": 2
+    },
+    "affected_endpoints": [
+      "POST:/shoppingassistant"
+    ],
+    "has_critical": false
+  },
+  "drift_details": {
+    "contract_drift": [],
+    "validation_drift": [],
+    "behavioral_drift": [
+      {
+        "endpoint_id": "POST:/shoppingassistant",
+        "test_ids": [
+          "valid_POST_1",
+          "boundary_empty_POST_1"
+        ],
+        "anomaly_type": "inconsistent_null_values",
+        "description": "Field 'received.image' is null in 50.0% of 2xx responses (1/2), indicating inconsistent behavior",
+        "evidence": {
+          "field_path": "received.image",
+          "null_count": 1,
+          "non_null_count": 1,
+          "null_percentage": 50.0,
+          "status_class": "2xx"
+        },
+        "severity": "medium"
+      },
+      {
+        "endpoint_id": "POST:/shoppingassistant",
+        "test_ids": [
+          "valid_POST_1",
+          "boundary_empty_POST_1"
+        ],
+        "anomaly_type": "response_structure_variation",
+        "description": "Response structure varies across 2xx tests. Found 2 different structures in 2 responses",
+        "evidence": {
+          "unique_structures": 2,
+          "total_responses": 2,
+          "structures": [
+            "dict[received:dict[image:null,message:str],recommendations:list[dict[product_id:str,score:float]]]",
+            "dict[received:dict[image:str,message:str],recommendations:list[dict[product_id:str,score:float]]]"
+          ],
+          "status_class": "2xx"
+        },
+        "severity": "medium"
+      }
+    ]
+  },
+  "configuration": {
+    "execution": {
+      "parallel_workers": 4,
+      "timeout_seconds": 10
+    },
+    "drift_detection": {
+      "contract_drift": true,
+      "validation_drift": true,
+      "behavioral_drift": true
+    },
+    "ai_analysis": {
+      "enabled": false,
+      "model": "claude-3-5-sonnet-20241022"
+    }
+  }
+}

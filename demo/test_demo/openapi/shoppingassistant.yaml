@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Shopping Assistant Service (demo)
+  version: 1.0.0
+  description: Minimal OpenAPI spec for shoppingassistantservice in microservices-demo
+servers:
+  - url: http://localhost:8080
+paths:
+  /shoppingassistant:
+    post:
+      summary: Ask the shopping assistant (RAG)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                image:
+                  type: string
+              required: [message]
+      responses:
+        '200':
+          description: Assistant response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+        '400':
+          description: Bad request

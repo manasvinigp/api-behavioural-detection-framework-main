@@ -1,0 +1,26 @@
+# Example acv_config.yaml for demo and CI
+version: 1
+name: example-run
+spec: api/openapi.yaml
+url: http://localhost:8000
+prd: requirements/api.md
+track_drift: false
+runner:
+  concurrency: 4
+  timeout_seconds: 10
+  retry_attempts: 1
+generation:
+  include_valid: true
+  include_invalid: true
+  invalid_ratio: 0.2
+  boundary_cases: true
+prioritization:
+  strategy: risk_score
+reporting:
+  markdown: true
+  json: outputs/report.json
+  claude_integration: false
+ml:
+  embedding_model: all-MiniLM-L6-v2
+  clustering: kmeans
+  anomaly_detector: isolation_forest

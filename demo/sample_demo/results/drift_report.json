@@ -1,0 +1,78 @@
+{
+  "contract_drift": {
+    "violations": [
+      {
+        "endpoint": "POST /users",
+        "issue": "Missing required field 'email' in response",
+        "severity": "HIGH",
+        "test_cases_affected": 5,
+        "confidence": 0.95
+      },
+      {
+        "endpoint": "GET /users/{userId}",
+        "issue": "Unexpected field 'internal_id' found in response",
+        "severity": "MEDIUM",
+        "test_cases_affected": 3,
+        "confidence": 0.88
+      },
+      {
+        "endpoint": "POST /users",
+        "issue": "Type mismatch: field 'age' expected integer, got string",
+        "severity": "HIGH",
+        "test_cases_affected": 4,
+        "confidence": 0.92
+      }
+    ],
+    "score": 0.35
+  },
+  "validation_drift": {
+    "violations": [
+      {
+        "endpoint": "POST /users",
+        "issue": "Accepts invalid email format 'not-an-email'",
+        "severity": "MEDIUM",
+        "test_cases_affected": 3,
+        "confidence": 0.9
+      },
+      {
+        "endpoint": "POST /users",
+        "issue": "Accepts negative age value (-5)",
+        "severity": "MEDIUM",
+        "test_cases_affected": 2,
+        "confidence": 0.85
+      },
+      {
+        "endpoint": "POST /users",
+        "issue": "Accepts name exceeding max length (150 chars when max is 100)",
+        "severity": "LOW",
+        "test_cases_affected": 2,
+        "confidence": 0.8
+      }
+    ],
+    "score": 0.28
+  },
+  "behavioral_drift": {
+    "anomalies": [
+      {
+        "endpoint": "GET /users/{userId}",
+        "issue": "Response embedding similarity below threshold (0.62)",
+        "severity": "LOW",
+        "test_cases_affected": 2,
+        "confidence": 0.75
+      },
+      {
+        "endpoint": "GET /users",
+        "issue": "Distribution shift detected (JS divergence: 0.23)",
+        "severity": "LOW",
+        "test_cases_affected": 4,
+        "confidence": 0.7
+      }
+    ],
+    "score": 0.15
+  },
+  "overall_drift_score": 0.42,
+  "total_tests_executed": 25,
+  "tests_passed": 15,
+  "tests_failed": 10,
+  "timestamp": "2026-05-09T01:18:10.156732+00:00"
+}

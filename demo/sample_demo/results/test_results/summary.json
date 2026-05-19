@@ -1,0 +1,31 @@
+{
+  "contract_drift_tests": {
+    "total": 10,
+    "passed": 3,
+    "failed": 7,
+    "failures": [
+      "Missing required field 'email' in response",
+      "Unexpected field 'internal_id' found in response",
+      "Type mismatch: field 'age' expected integer, got string"
+    ]
+  },
+  "validation_drift_tests": {
+    "total": 8,
+    "passed": 5,
+    "failed": 3,
+    "failures": [
+      "Accepts invalid email format 'not-an-email'",
+      "Accepts negative age value (-5)",
+      "Accepts name exceeding max length (150 chars when max is 100)"
+    ]
+  },
+  "behavioral_drift_tests": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "anomalies": [
+      "Response embedding similarity below threshold (0.62)",
+      "Distribution shift detected (JS divergence: 0.23)"
+    ]
+  }
+}

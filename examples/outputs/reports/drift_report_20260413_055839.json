@@ -1,0 +1,23 @@
+{
+  "drift_details": {
+    "validation_drift": [
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "val-001",
+        "test_type": "invalid",
+        "violated_constraint": "email: required, pattern",
+        "input_data": {"email": "not-an-email", "age": 17},
+        "actual_status_code": 200,
+        "expected_status_code_range": "4xx",
+        "message": "Accepted invalid email and underage value",
+        "severity": "high"
+      }
+    ]
+  },
+  "drift_summary": {
+    "total_issues": 1,
+    "by_severity": {"high": 1},
+    "by_type": {"validation": 1},
+    "affected_endpoints": ["POST:/users"]
+  }
+}

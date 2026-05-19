@@ -1,0 +1,3 @@
+[console_scripts]
+acv = api_contract_validator.cli.main:cli
+api-contract-validator = api_contract_validator.cli.main:cli

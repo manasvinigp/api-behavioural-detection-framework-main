@@ -1,0 +1,30 @@
+project:
+  spec:
+    path: openapi/sample_users_api.yaml
+  output:
+    reports: examples/outputs/reports
+
+api:
+  base_url: http://localhost:8000
+
+execution:
+  parallel_workers: 4
+  timeout_seconds: 10
+
+test_generation:
+  max_tests_per_endpoint: 50
+
+drift_detection:
+  detect_contract_drift: true
+  detect_validation_drift: true
+  detect_behavioral_drift: true
+
+ai_analysis:
+  enabled: true
+  model: claude
+
+reporting:
+  output_directory: examples/outputs/reports
+
+logging:
+  level: INFO

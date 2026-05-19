@@ -1,0 +1,436 @@
+EXIT_CODE=1
+........................................................................ [ 39%]
+........................           ERROR    Error on request:                                          
+                    Traceback (.most recent call last):                         
+                      File                                                     
+                    "c:\Manasvini\WebDev\api-behavioural-detection-framework\.v
+                    env\Lib\site-packages\werkzeug\serving.py", line 371, in   
+                    run_wsgi                                                   
+                        execute(self.server.app)                               
+                        ~~~~~~~^^^^^^^^^^^^^^^^^                               
+.                      File                                                     
+                    "c:\Manasvini\WebDev\api-behavioural-detection-framework\.v
+                    env\Lib\site-packages\werkzeug\serving.py", line 332, in   
+                    execute                                                    
+                    .............................................. [ 78%]
+................F......................                                  [100%]
+================================== FAILURES ===================================
+_________ TestDiscriminatorValidator.test_unknown_discriminator_value _________
+
+self = <tests.unit.test_schema_composition.TestDiscriminatorValidator object at 0x000001F5F6079F30>
+spec_dict = {'components': {'schemas': {'DataDestination': {'discriminator': {'mapping': {'HDL': '#/components/schemas/HDLDataDest...': {'type': 'string'}, 'type': {'enum': [...], 'type': 'string'}}, 'required': ['type', 'bucket'], 'type': 'object'}}}}
+
+    def test_unknown_discriminator_value(self, spec_dict):
+        """Test unknown discriminator value is detected."""
+        validator = DiscriminatorValidator(spec_dict)
+        schema = spec_dict["components"]["schemas"]["DataDestination"]
+    
+        data = {"type": "AZURE", "host": "example.com"}  # Unknown type
+    
+        violations = validator.validate(data, schema, "POST:/destinations", "response_body")
+    
+>       assert len(violations) > 0
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+tests\unit\test_schema_composition.py:89: AssertionError
+============================== warnings summary ===============================
+src\api_contract_validator\config\models.py:107
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\config\models.py:107: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Config(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:49
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:49: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class FieldConstraint(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:69
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:69: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class FieldDefinition(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:86
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:86: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Parameter(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:102
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:102: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class RequestBody(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:102
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:102: UserWarning: Field name "schema" in "RequestBody" shadows an attribute in parent "BaseModel"
+    class RequestBody(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:117
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:117: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ResponseBody(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:117
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:117: UserWarning: Field name "schema" in "ResponseBody" shadows an attribute in parent "BaseModel"
+    class ResponseBody(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:132
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:132: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Endpoint(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:159
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:159: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class SecurityScheme(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:175
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:175: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class APIMetadata(BaseModel):
+
+src\api_contract_validator\input\normalizer\models.py:192
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\input\normalizer\models.py:192: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class UnifiedAPISpec(BaseModel):
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:54
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:54: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class TestSuite(BaseModel):
+
+src\api_contract_validator\schema\contract\contract_model.py:33
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\schema\contract\contract_model.py:33: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ConstraintRule(BaseModel):
+
+src\api_contract_validator\schema\contract\contract_model.py:45
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\schema\contract\contract_model.py:45: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ContractRule(BaseModel):
+
+src\api_contract_validator\schema\contract\contract_model.py:62
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\schema\contract\contract_model.py:62: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class EndpointContract(BaseModel):
+
+src\api_contract_validator\schema\contract\contract_model.py:88
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\schema\contract\contract_model.py:88: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class APIContract(BaseModel):
+
+src\api_contract_validator\schema\contract\contract_model.py:116
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\schema\contract\contract_model.py:116: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Violation(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:24: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ContractDriftIssue(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:45
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:45: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ValidationDriftIssue(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:65
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:65: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class BehavioralDriftIssue(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:82
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:82: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class DriftSummary(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:98
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:98: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class DriftReport(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:181
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:181: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class DriftSnapshot(BaseModel):
+
+src\api_contract_validator\analysis\drift\models.py:193
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\drift\models.py:193: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ProgressiveDriftTrend(BaseModel):
+
+src\api_contract_validator\analysis\reasoning\models.py:21
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\models.py:21: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class RootCauseAnalysis(BaseModel):
+
+src\api_contract_validator\analysis\reasoning\models.py:37
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\models.py:37: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class RemediationSuggestion(BaseModel):
+
+src\api_contract_validator\analysis\reasoning\models.py:55
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\models.py:55: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class IssueCorrelation(BaseModel):
+
+src\api_contract_validator\analysis\reasoning\models.py:70
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\models.py:70: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class AnalysisResult(BaseModel):
+
+src\api_contract_validator\reporting\models.py:13
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\models.py:13: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ReportSummary(BaseModel):
+
+src\api_contract_validator\reporting\models.py:40
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\models.py:40: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class EndpointDriftSummary(BaseModel):
+
+src\api_contract_validator\reporting\models.py:55
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\models.py:55: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class EndpointReport(BaseModel):
+
+src\api_contract_validator\reporting\models.py:69
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\models.py:69: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class DriftBreakdown(BaseModel):
+
+src\api_contract_validator\reporting\models.py:80
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\models.py:80: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class ReportMetadata(BaseModel):
+
+.venv\Lib\site-packages\pydantic\main.py:263: 1 warning
+tests/integration/test_cli_commands.py: 5 warnings
+tests/integration/test_end_to_end.py: 1 warning
+tests/unit/test_ai_analyzer.py: 9 warnings
+tests/unit/test_drift_detector.py: 4 warnings
+tests/unit/test_drift_models.py: 5 warnings
+tests/unit/test_report_generator.py: 7 warnings
+  c:\Manasvini\WebDev\api-behavioural-detection-framework\.venv\Lib\site-packages\pydantic\main.py:263: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+
+src\api_contract_validator\reporting\claude_integration\generator.py:141
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_success
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_exit_codes
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_output_formats
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_config_override
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_no_ai_flag
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\claude_integration\generator.py:141: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+src\api_contract_validator\config\models.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\config\models.py:24: PytestCollectionWarning: cannot collect test class 'TestGenerationConfig' because it has a __init__ constructor (from: tests/integration/test_end_to_end.py)
+    class TestGenerationConfig(BaseModel):
+
+src\api_contract_validator\execution\runner\executor.py:41
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\execution\runner\executor.py:41: PytestCollectionWarning: cannot collect test class 'TestExecutor' because it has a __init__ constructor (from: tests/integration/test_end_to_end.py)
+    class TestExecutor:
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_boundary_generator.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_boundary_generator.py)
+    class TestCaseType(str, Enum):
+
+src\api_contract_validator\execution\runner\executor.py:41
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\execution\runner\executor.py:41: PytestCollectionWarning: cannot collect test class 'TestExecutor' because it has a __init__ constructor (from: tests/unit/test_executor.py)
+    class TestExecutor:
+
+src\api_contract_validator\execution\runner\executor.py:19
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\execution\runner\executor.py:19: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/unit/test_executor.py)
+    class TestResult:
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_executor.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_executor.py)
+    class TestCaseType(str, Enum):
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_invalid_generator.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_invalid_generator.py)
+    class TestCaseType(str, Enum):
+
+src\api_contract_validator\config\models.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\config\models.py:24: PytestCollectionWarning: cannot collect test class 'TestGenerationConfig' because it has a __init__ constructor (from: tests/unit/test_master_generator.py)
+    class TestGenerationConfig(BaseModel):
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_master_generator.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_master_generator.py)
+    class TestCaseType(str, Enum):
+
+src\api_contract_validator\config\models.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\config\models.py:24: PytestCollectionWarning: cannot collect test class 'TestGenerationConfig' because it has a __init__ constructor (from: tests/unit/test_prioritizer.py)
+    class TestGenerationConfig(BaseModel):
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_prioritizer.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_prioritizer.py)
+    class TestCaseType(str, Enum):
+
+src\api_contract_validator\generation\base.py:54
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:54: PytestCollectionWarning: cannot collect test class 'TestSuite' because it has a __init__ constructor (from: tests/unit/test_prioritizer.py)
+    class TestSuite(BaseModel):
+
+src\api_contract_validator\execution\runner\executor.py:19
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\execution\runner\executor.py:19: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/unit/test_result_collector.py)
+    class TestResult:
+
+src\api_contract_validator\generation\base.py:24
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:24: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/unit/test_valid_generator.py)
+    class TestCase(BaseModel):
+
+src\api_contract_validator\generation\base.py:15
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\base.py:15: PytestCollectionWarning: cannot collect test class 'TestCaseType' because it has a __init__ constructor (from: tests/unit/test_valid_generator.py)
+    class TestCaseType(str, Enum):
+
+tests/integration/test_cli_commands.py: 5 warnings
+tests/integration/test_end_to_end.py: 4 warnings
+tests/unit/test_openapi_parser.py: 23 warnings
+  c:\Manasvini\WebDev\api-behavioural-detection-framework\.venv\Lib\site-packages\openapi_spec_validator\shortcuts.py:73: DeprecationWarning: validate_spec shortcut is deprecated. Use validate instead.
+    warnings.warn(
+
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_success
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_exit_codes
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_config_override
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_no_ai_flag
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\markdown\generator.py:98: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_success
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_exit_codes
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_config_override
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_no_ai_flag
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\markdown\generator.py:193: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "report_timestamp": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_success
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_exit_codes
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_output_formats
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_config_override
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_no_ai_flag
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\json\generator.py:151: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_success
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_exit_codes
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_output_formats
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_config_override
+tests/integration/test_cli_commands.py::TestCLICommands::test_validate_command_no_ai_flag
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\reporting\json\generator.py:59: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "generated_at": datetime.utcnow().isoformat(),
+
+tests/unit/test_ai_analyzer.py::TestAIAnalyzer::test_analyze_drift_no_issues
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\analyzer.py:90: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    analysis_timestamp=datetime.utcnow().isoformat(),
+
+tests/unit/test_ai_analyzer.py::TestAIAnalyzer::test_analyze_drift_with_issues
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\analysis\reasoning\analyzer.py:98: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    analysis_timestamp=datetime.utcnow().isoformat(),
+
+tests/unit/test_ai_analyzer.py::TestAIAnalyzer::test_extract_patterns_validation_drift
+  c:\Manasvini\WebDev\api-behavioural-detection-framework\tests\unit\test_ai_analyzer.py:216: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    analysis_timestamp=datetime.utcnow().isoformat(),
+
+tests/unit/test_ai_analyzer.py::TestAIAnalyzer::test_extract_patterns_contract_drift
+  c:\Manasvini\WebDev\api-behavioural-detection-framework\tests\unit\test_ai_analyzer.py:254: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    analysis_timestamp=datetime.utcnow().isoformat(),
+
+tests/unit/test_valid_generator.py::TestValidTestGenerator::test_generate_valid_string_with_datetime_format
+  C:\Manasvini\WebDev\api-behavioural-detection-framework\src\api_contract_validator\generation\valid\generator.py:194: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat() + "Z"
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform win32, python 3.13.1-final-0 -----------
+Name                                                                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------------
+src\api_contract_validator\__init__.py                                             4      0   100%
+src\api_contract_validator\analysis\__init__.py                                    0      0   100%
+src\api_contract_validator\analysis\context\__init__.py                            2      0   100%
+src\api_contract_validator\analysis\context\page_ranker.py                       150    111    26%   16, 39, 102-138, 160-188, 200-219, 223-233, 242-263, 271-313, 325-335, 347-367, 377-408, 416-427, 435-449
+src\api_contract_validator\analysis\drift\__init__.py                              3      0   100%
+src\api_contract_validator\analysis\drift\behavioral_drift.py                    167     36    78%   106-107, 111-157, 242-261, 283-302, 313, 324-340, 352, 357, 374-375, 387, 390, 398, 402, 406, 410
+src\api_contract_validator\analysis\drift\contract_drift.py                       42      9    79%   76-77, 90-112, 127-136
+src\api_contract_validator\analysis\drift\detector.py                             43      4    91%   97-100
+src\api_contract_validator\analysis\drift\models.py                              113      0   100%
+src\api_contract_validator\analysis\drift\progressive\__init__.py                  2      2     0%   8-10
+src\api_contract_validator\analysis\drift\progressive\tracker.py                  14     14     0%   3-26
+src\api_contract_validator\analysis\drift\validation_drift.py                     24      3    88%   50, 80-94
+src\api_contract_validator\analysis\reasoning\__init__.py                          3      0   100%
+src\api_contract_validator\analysis\reasoning\analyzer.py                        221     54    76%   63-65, 122-125, 166-176, 184, 206-208, 238, 255-262, 275-293, 313, 376, 422-424, 444-461, 500, 547-555, 577-601
+src\api_contract_validator\analysis\reasoning\models.py                           48      1    98%   93
+src\api_contract_validator\api\__init__.py                                         0      0   100%
+src\api_contract_validator\api\server.py                                         209    209     0%   7-481
+src\api_contract_validator\cli\__init__.py                                         0      0   100%
+src\api_contract_validator\cli\main.py                                           476    299    37%   46, 149-151, 155-162, 167-172, 192-203, 213, 227-229, 257-262, 292-302, 354-359, 362-364, 366-368, 400-457, 476-573, 606-843, 870, 880, 885-886, 893-900
+src\api_contract_validator\config\__init__.py                                      3      0   100%
+src\api_contract_validator\config\exceptions.py                                   29      3    90%   42-44
+src\api_contract_validator\config\loader.py                                       79      9    89%   64, 72, 76, 80, 84, 122-123, 137-138
+src\api_contract_validator\config\logging.py                                      48     12    75%   34, 62-69, 76-79
+src\api_contract_validator\config\models.py                                       86      4    95%   103, 146-148
+src\api_contract_validator\execution\__init__.py                                   0      0   100%
+src\api_contract_validator\execution\chaos\__init__.py                             3      3     0%   8-11
+src\api_contract_validator\execution\chaos\differential.py                        13     13     0%   3-27
+src\api_contract_validator\execution\chaos\interceptor.py                         17     17     0%   3-30
+src\api_contract_validator\execution\collector\__init__.py                         0      0   100%
+src\api_contract_validator\execution\collector\result_collector.py                37      1    97%   32
+src\api_contract_validator\execution\runner\__init__.py                            0      0   100%
+src\api_contract_validator\execution\runner\executor.py                           76     18    76%   140-174, 218-219
+src\api_contract_validator\generation\__init__.py                                  0      0   100%
+src\api_contract_validator\generation\base.py                                     55      1    98%   82
+src\api_contract_validator\generation\boundary\__init__.py                         0      0   100%
+src\api_contract_validator\generation\boundary\generator.py                       91      2    98%   264-265
+src\api_contract_validator\generation\fuzzing\__init__.py                          3      0   100%
+src\api_contract_validator\generation\fuzzing\fuzzer.py                          170    142    16%   54-86, 94-122, 133-146, 152-178, 184-229, 237-251, 257-281, 287-310, 316-339, 343-356, 360-372, 378-390, 396-402, 410-427
+src\api_contract_validator\generation\fuzzing\mutations.py                       146    124    15%   50-67, 74-92, 98-117, 123-141, 147-168, 174-206, 212-231, 237-251, 257-274, 280-295, 301-318, 324-329, 333-355
+src\api_contract_validator\generation\invalid\__init__.py                          0      0   100%
+src\api_contract_validator\generation\invalid\generator.py                       115      9    92%   290-297, 303-304
+src\api_contract_validator\generation\prioritizer\__init__.py                      0      0   100%
+src\api_contract_validator\generation\prioritizer\risk_ranker.py                  66      3    95%   105, 107, 138
+src\api_contract_validator\generation\prioritizer\smartselection\__init__.py       2      2     0%   7-9
+src\api_contract_validator\generation\prioritizer\smartselection\selector.py      24     24     0%   3-39
+src\api_contract_validator\generation\semantic\__init__.py                         2      2     0%   8-10
+src\api_contract_validator\generation\semantic\generator.py                        9      9     0%   3-31
+src\api_contract_validator\generation\stateful\__init__.py                         3      3     0%   3-6
+src\api_contract_validator\generation\stateful\dependency.py                      59     59     0%   3-88
+src\api_contract_validator\generation\stateful\workflow.py                        70     70     0%   3-130
+src\api_contract_validator\generation\test_generator.py                           58      4    93%   63-64, 97-98
+src\api_contract_validator\generation\valid\__init__.py                            0      0   100%
+src\api_contract_validator\generation\valid\generator.py                         127     15    88%   57, 93-94, 101-102, 152, 165, 179-184, 196, 200, 204
+src\api_contract_validator\input\__init__.py                                       0      0   100%
+src\api_contract_validator\input\factory.py                                       71     71     0%   10-283
+src\api_contract_validator\input\normalizer\__init__.py                            0      0   100%
+src\api_contract_validator\input\normalizer\models.py                            134      7    95%   217-220, 224, 231-232
+src\api_contract_validator\input\openapi\__init__.py                               0      0   100%
+src\api_contract_validator\input\openapi\parser.py                               177     45    75%   59-60, 110-147, 151-160, 172-192, 264-265, 303, 378
+src\api_contract_validator\input\prd\__init__.py                                   0      0   100%
+src\api_contract_validator\input\prd\parser.py                                   175    175     0%   7-415
+src\api_contract_validator\ml\__init__.py                                          1      1     0%   10
+src\api_contract_validator\ml\anomaly\__init__.py                                 12     12     0%   5-56
+src\api_contract_validator\ml\clustering\__init__.py                               9      9     0%   5-29
+src\api_contract_validator\ml\embedding\__init__.py                               23     23     0%   5-50
+src\api_contract_validator\reporting\__init__.py                                   3      0   100%
+src\api_contract_validator\reporting\claude_integration\__init__.py                2      0   100%
+src\api_contract_validator\reporting\claude_integration\generator.py             164     77    53%   84-87, 90-93, 219-233, 237-308, 700-807, 817-1002
+src\api_contract_validator\reporting\cli\__init__.py                               2      0   100%
+src\api_contract_validator\reporting\cli\formatter.py                             90     16    82%   63, 142, 172-193, 198, 217
+src\api_contract_validator\reporting\generator.py                                 60      2    97%   113-114
+src\api_contract_validator\reporting\json\__init__.py                              2      0   100%
+src\api_contract_validator\reporting\json\generator.py                            44      5    89%   97, 166, 205, 215, 228
+src\api_contract_validator\reporting\markdown\__init__.py                          2      0   100%
+src\api_contract_validator\reporting\markdown\generator.py                        93      9    90%   226-227, 247-252, 273, 298
+src\api_contract_validator\reporting\models.py                                    54      0   100%
+src\api_contract_validator\schema\__init__.py                                      0      0   100%
+src\api_contract_validator\schema\composition\__init__.py                          5      0   100%
+src\api_contract_validator\schema\composition\allof_validator.py                  52     13    75%   65, 107-117, 124, 132-134
+src\api_contract_validator\schema\composition\anyof_validator.py                  31      4    87%   65, 97, 105-107
+src\api_contract_validator\schema\composition\discriminator_validator.py          57     11    81%   57, 66-67, 93-105, 139, 152-153, 164-167
+src\api_contract_validator\schema\composition\oneof_validator.py                  40      4    90%   65, 120, 128-130
+src\api_contract_validator\schema\contract\__init__.py                             0      0   100%
+src\api_contract_validator\schema\contract\constraint_extractor.py                72      0   100%
+src\api_contract_validator\schema\contract\contract_model.py                      66      1    98%   78
+src\api_contract_validator\schema\contract\rules_engine.py                       218    174    20%   55-64, 68-77, 81-90, 94-103, 110-124, 156, 190-196, 206-286, 296-315, 321-336, 342-354, 360-372, 378-390, 396-408, 414-426, 432-443, 449-478, 483-525, 544-559
+src\api_contract_validator\schema\graph\__init__.py                                0      0   100%
+src\api_contract_validator\schema\graph\schema_graph.py                           94     94     0%   7-178
+src\api_contract_validator\schema\resolver\__init__.py                             0      0   100%
+src\api_contract_validator\schema\resolver\ref_resolver.py                        53     53     0%   7-105
+src\api_contract_validator\storage\__init__.py                                     0      0   100%
+------------------------------------------------------------------------------------------------------------
+TOTAL                                                                           4718   2097    56%
+Coverage HTML written to dir htmlcov
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ===========================
+FAILED tests/unit/test_schema_composition.py::TestDiscriminatorValidator::test_unknown_discriminator_value
+1 failed, 182 passed, 148 warnings in 26.79s

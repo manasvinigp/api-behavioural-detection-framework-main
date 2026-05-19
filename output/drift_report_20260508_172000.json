@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-08T17:20:00.287879+00:00",
+    "generator_version": "0.1.0",
+    "format": "json",
+    "spec_source": "C:\\Users\\manas\\AppData\\Local\\Temp\\pytest-of-manas\\pytest-5\\test_validate_command_no_ai_fl0\\test_spec.yaml",
+    "spec_version": "1.0.0",
+    "api_url": "http://localhost:32174/"
+  },
+  "execution_summary": {
+    "total_tests": 17,
+    "passed": 6,
+    "failed": 11,
+    "pass_rate": 35.29
+  },
+  "drift_summary": {
+    "total_issues": 10,
+    "by_severity": {
+      "high": 9,
+      "critical": 1
+    },
+    "by_type": {
+      "contract": 0,
+      "validation": 9,
+      "behavioral": 1
+    },
+    "affected_endpoints": [
+      "GET:/users/{userId}",
+      "POST:/users"
+    ],
+    "has_critical": true
+  },
+  "drift_details": {
+    "contract_drift": [],
+    "validation_drift": [
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_missing_POST_1",
+        "test_type": "INVALID",
+        "violated_constraint": "Missing required field: email",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Missing required field: email",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_missing_POST_2",
+        "test_type": "INVALID",
+        "violated_constraint": "Missing required field: name",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Missing required field: name",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_type_POST_3",
+        "test_type": "INVALID",
+        "violated_constraint": "Type violation for field: email",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Type violation for field: email",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_type_POST_4",
+        "test_type": "INVALID",
+        "violated_constraint": "Type violation for field: name",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Type violation for field: name",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_type_POST_5",
+        "test_type": "INVALID",
+        "violated_constraint": "Type violation for field: age",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Type violation for field: age",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_short_POST_6",
+        "test_type": "INVALID",
+        "violated_constraint": "String too short for name (min: 1)",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: String too short for name (min: 1)",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_long_POST_7",
+        "test_type": "INVALID",
+        "violated_constraint": "String too long for name (max: 100)",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: String too long for name (max: 100)",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_small_POST_8",
+        "test_type": "INVALID",
+        "violated_constraint": "Value too small for age (min: 0)",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Value too small for age (min: 0)",
+        "severity": "high"
+      },
+      {
+        "endpoint_id": "POST:/users",
+        "test_id": "invalid_large_POST_9",
+        "test_type": "INVALID",
+        "violated_constraint": "Value too large for age (max: 150)",
+        "actual_status_code": 200,
+        "expected_status_code_range": "400-499",
+        "message": "API accepted invalid input (got 200). Should reject with 4xx status. Constraint violated: Value too large for age (max: 150)",
+        "severity": "high"
+      }
+    ],
+    "behavioral_drift": [
+      {
+        "endpoint_id": "GET:/users/{userId}",
+        "test_ids": [
+          "valid_GET_3"
+        ],
+        "anomaly_type": "server_errors",
+        "description": "Endpoint returned 1 server errors (5xx) out of 1 tests (100.0% error rate). Status codes: {500: 1}",
+        "evidence": {
+          "error_count": 1,
+          "total_tests": 1,
+          "error_rate_percent": 100.0,
+          "status_code_distribution": {
+            "500": 1
+          },
+          "sample_responses": [
+            {
+              "test_id": "valid_GET_3",
+              "status_code": 500,
+              "test_type": "valid"
+            }
+          ]
+        },
+        "severity": "critical"
+      }
+    ]
+  },
+  "configuration": {
+    "execution": {
+      "parallel_workers": 10,
+      "timeout_seconds": 30
+    },
+    "drift_detection": {
+      "contract_drift": true,
+      "validation_drift": true,
+      "behavioral_drift": true
+    },
+    "ai_analysis": {
+      "enabled": false,
+      "model": "claude-3-5-sonnet-20241022"
+    }
+  }
+}
