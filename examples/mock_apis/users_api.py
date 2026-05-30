@@ -29,19 +29,34 @@ def create_user():
     global next_id
 
     data = request.get_json()
-
-    # Validation (intentionally weak for drift detection demo)
+    # Validation (improved to address common validation drift issues)
     if not data:
         return jsonify({"error": "bad_request", "message": "Request body required"}), 400
 
-    # Note: Missing validation for email format and name length
-    # This will cause validation drift to be detected
+    # Basic required-field checks
+    email = data.get("email")
+    name = data.get("name")
+    age = data.get("age")
+
+    if not isinstance(email, str) or "@" not in email:
+        return jsonify({"error": "bad_request", "message": "Invalid or missing 'email'"}), 400
+
+    if not isinstance(name, str) or len(name) < 1 or len(name) > 100:
+        return jsonify({"error": "bad_request", "message": "Invalid or missing 'name'"}), 400
+
+    if age is not None:
+        try:
+            age_val = int(age)
+        except Exception:
+            return jsonify({"error": "bad_request", "message": "Invalid 'age' type"}), 400
+        if age_val < 0 or age_val > 150:
+            return jsonify({"error": "bad_request", "message": "'age' out of range"}), 400
 
     user = {
         "id": next_id,
-        "email": data.get("email", ""),
-        "name": data.get("name", ""),
-        "age": data.get("age"),
+        "email": email,
+        "name": name,
+        "age": age,
         "status": "active",
     }
 

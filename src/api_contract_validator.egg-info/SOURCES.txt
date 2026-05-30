@@ -40,6 +40,7 @@ src/api_contract_validator/config/loader.py
 src/api_contract_validator/config/logging.py
 src/api_contract_validator/config/models.py
 src/api_contract_validator/execution/__init__.py
+src/api_contract_validator/execution/grpc_executor.py
 src/api_contract_validator/execution/chaos/__init__.py
 src/api_contract_validator/execution/chaos/differential.py
 src/api_contract_validator/execution/chaos/interceptor.py

@@ -9,9 +9,9 @@ Automatically applies fixes for validation drift issues found in the ACV drift r
 
 ## Context
 
-**Total Validation Issues:** 1
+**Total Validation Issues:** 9
 **Affected Endpoints:**
-- `POST:/users`: 1 issues
+- `POST:/shoppingassistant`: 9 issues
 
 ## When to Use
 
@@ -189,7 +189,7 @@ reports = sorted(Path('.').glob('**/drift_report_*.json'), key=lambda p: p.stat(
 if reports:
     report = json.load(reports[-1].open())
     remaining = len(report['drift_details']['validation_drift'])
-    fixed = 1 - remaining
+    fixed = 9 - remaining
 
     print(f"\n✅ Fixed {fixed} validation drift issues!")
     print(f"📊 {remaining} issues remaining\n")
@@ -209,11 +209,11 @@ git add {modified_files}
 git commit -m "fix: add input validation to resolve ACV drift
 
 - Added validation schemas for affected endpoints
-- Fixes 1 validation drift issues
+- Fixes 9 validation drift issues
 - Prevents invalid data from entering the system
 
 Affected endpoints:
-  - POST:/users
+  - POST:/shoppingassistant
 
 ACV Report: {report_path}"
 ```
@@ -226,7 +226,7 @@ User: "fix the validation drift issues"
 Claude:
 🔍 Analyzing validation drift report...
 
-Found 1 validation drift issues across 1 endpoint(s).
+Found 9 validation drift issues across 1 endpoint(s).
 
 📦 Detecting framework... Flask detected
 
@@ -241,7 +241,7 @@ Found 1 validation drift issues across 1 endpoint(s).
 ✅ Running verification...
    acv validate --spec openapi/api.yaml --url http://localhost:8000
 
-   Fixed: 1 issues
+   Fixed: 9 issues
    Remaining: 0 issues
 
 🎉 All validation drift resolved!
